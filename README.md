@@ -2,6 +2,16 @@
 
 App de carteira digital (fintech) em dark mode, feito com React Native + Expo + TypeScript. Projeto de portfólio: a interface segue um design próprio, com profundidade construída por tom, vidro e luz. Não há integração com API; todos os valores são fictícios e fixos no código.
 
+## Prévia
+
+<p>
+  <img src="docs/screenshots/home.png" width="19%" alt="Home" />
+  <img src="docs/screenshots/historico.png" width="19%" alt="Histórico" />
+  <img src="docs/screenshots/investimento.png" width="19%" alt="Detalhe do investimento" />
+  <img src="docs/screenshots/transferir.png" width="19%" alt="Transferir" />
+  <img src="docs/screenshots/sucesso.png" width="19%" alt="Sucesso" />
+</p>
+
 ## Telas
 
 - **Home:** saldo com opção de ocultar, ações rápidas, categorias e carrossel de destaques

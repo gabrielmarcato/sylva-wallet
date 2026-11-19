@@ -11,7 +11,13 @@ import { BALANCE, CONTACTS, QUICK_AMOUNTS } from '@/data';
 import { formatBRL, groupThousands } from '@/lib/format';
 import { colors, radius } from '@/theme';
 
-const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'del'] as const;
+const ROWS = [
+  ['1', '2', '3'],
+  ['4', '5', '6'],
+  ['7', '8', '9'],
+  ['.', '0', 'del'],
+] as const;
+const KEYS = ROWS.flat();
 
 export default function Transfer() {
   const insets = useSafeAreaInsets();
@@ -110,24 +116,30 @@ export default function Transfer() {
       </View>
 
       <View style={styles.keys}>
-        {KEYS.map((k) => (
-          <Pressable
-            key={k}
-            onPress={() => press(k)}
-            style={({ pressed }) => [styles.key, pressed && { backgroundColor: colors.elevated }]}
-          >
-            {k === 'del' ? (
-              <Delete size={24} color={colors.text} strokeWidth={1.5} />
-            ) : (
-              <AppText weight="medium" size={26}>
-                {k}
-              </AppText>
-            )}
-          </Pressable>
+        {ROWS.map((row, r) => (
+          <View key={r} style={styles.keyRow}>
+            {row.map((k) => (
+              <Pressable
+                key={k}
+                onPress={() => press(k)}
+                style={({ pressed }) => [styles.key, pressed && { backgroundColor: colors.elevated }]}
+              >
+                {k === 'del' ? (
+                  <Delete size={24} color={colors.text} strokeWidth={1.5} />
+                ) : (
+                  <AppText weight="medium" size={26}>
+                    {k === '.' ? ',' : k}
+                  </AppText>
+                )}
+              </Pressable>
+            ))}
+          </View>
         ))}
       </View>
 
-      <View style={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: Math.max(insets.bottom, 14) + 20 }}>
+      <View
+        style={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: Math.max(insets.bottom, 14) + 20 }}
+      >
         <PrimaryButton
           label={amtNum > 0 ? `Enviar ${formatBRL(amtNum)} para ${ct.n}` : 'Digite um valor'}
           disabled={amtNum <= 0}
@@ -139,7 +151,12 @@ export default function Transfer() {
 }
 
 const styles = StyleSheet.create({
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20 },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+  },
   contacts: { gap: 14, paddingHorizontal: 20, paddingTop: 12, paddingBottom: 4 },
   contact: { alignItems: 'center', gap: 8 },
   avatar: {
@@ -173,10 +190,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  keys: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 20, gap: 6 },
+  keys: { paddingHorizontal: 20, gap: 6 },
+  keyRow: { flexDirection: 'row', gap: 6 },
   key: {
-    width: '32.4%',
-    flexGrow: 1,
+    flex: 1,
     height: 56,
     borderRadius: radius.button,
     alignItems: 'center',
