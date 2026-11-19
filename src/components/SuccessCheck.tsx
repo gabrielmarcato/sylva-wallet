@@ -25,7 +25,7 @@ function Ring({ delay }: { delay: number }) {
   }, [delay, p]);
   const style = useAnimatedStyle(() => ({
     opacity: 0.7 * (1 - p.value),
-    transform: [{ scale: 1 + 0.9 * p.value }],
+    transform: [{ scale: 1 + 0.55 * p.value }],
   }));
   return <Animated.View style={[styles.ring, style]} />;
 }
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   },
   glow: {
     position: 'absolute',
-    width: SIZE + 140,
-    height: SIZE + 140,
-    borderRadius: (SIZE + 140) / 2,
+    width: SIZE + 70,
+    height: SIZE + 70,
+    borderRadius: (SIZE + 70) / 2,
     backgroundColor: 'rgba(61,235,180,0.14)',
   },
 });

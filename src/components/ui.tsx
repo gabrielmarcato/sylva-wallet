@@ -296,6 +296,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   btnSecondary: {
+    height: 56,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.borderStrong,

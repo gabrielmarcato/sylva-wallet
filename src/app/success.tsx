@@ -34,7 +34,7 @@ export default function Success() {
           <SquareButton icon={X} onPress={goHome} />
         </View>
 
-        <View style={{ alignItems: 'center', gap: 36, paddingTop: 56 }}>
+        <View style={{ alignItems: 'center', gap: 52, paddingTop: 56 }}>
           <SuccessCheck />
           <View style={{ alignItems: 'center', gap: 8 }}>
             <AppText weight="semibold" size={24} style={{ letterSpacing: -0.5 }}>
